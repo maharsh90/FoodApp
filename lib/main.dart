@@ -1,5 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:food_express_app/login.dart';
+import 'package:food_express_app/slider_app.dart';
+
 
 void main() {
   runApp(MaterialApp(
@@ -9,79 +12,6 @@ void main() {
 }
 
 
-class SliderApp extends StatefulWidget{
-  const SliderApp({super.key});
-  State<SliderApp> createState() => _SliderAppState();
-}
-
-class _SliderAppState extends State<SliderApp> {
-  double currentSlider1Value=10;
-  double currentSlider2Value=10;
-  double currentSlider3Value=10;
-  Color back=Colors.white;
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: back,
-      appBar: AppBar(
-        title: Text('hi'),
-      ),
-      body: Column(
-        children: [
-          Slider(
-            activeColor: Colors.red,
-            max: 255,
-            min: 0,
-            value: currentSlider1Value,
-            onChanged: (value){
-              setState(() {
-                currentSlider1Value=value;
-                back=Color.fromRGBO(255, 0, 0, 0.7);
-              });
-            },
-          ),
-          SizedBox(height: 10,),
-          Slider(activeColor: Colors.blue,value: currentSlider2Value,min: 0,max: 255, onChanged: (value){
-            setState(() {
-              currentSlider2Value=value;
-              back=Color.fromRGBO(0, 0, 255, 0.7);
-            });
-          }),
-          SizedBox(height: 10,),
-          Slider(activeColor: Colors.green,value: currentSlider3Value,min: 0,max: 255, onChanged: (value){
-            setState(() {
-              currentSlider3Value=value;
-              back=Color.fromRGBO(0, 255, 0, 0.7);
-            });
-          }),
-          SizedBox(height: 10,),
-          ElevatedButton(onPressed: (){
-            setState(() {
-              back=Colors.red;
-            });
-          }, child: Text("Red")),
-          SizedBox(height: 10,),
-          ElevatedButton(onPressed: (){
-            setState(() {
-              back=Colors.lightBlue;
-            });
-          }, child: Text('blue')),
-          SizedBox(height: 10,),
-          ElevatedButton(onPressed: (){
-            setState(() {
-              back=Colors.green;
-            });
-          }, child: Text('green')),
-          SizedBox(height: 10,),
-          ElevatedButton(onPressed: (){
-            setState(() {
-              back=Colors.white;
-            });
-          }, child: Text('white')),
-        ],
-      ),
-    );
-  }
-}
 
 class HomePage extends StatelessWidget {
   int selectedIdx = 0;
@@ -149,35 +79,41 @@ class HomePage extends StatelessWidget {
           scrollDirection: Axis.vertical,
           child: Column(
             children: [
-              SizedBox(
-                height: 200,
-                child: ListView.builder(scrollDirection: Axis.horizontal,itemCount: txt.length,itemBuilder: (context,int index){
-                      return SingleChildScrollView(
-                        scrollDirection: Axis.horizontal,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Column(
-                              children: [
-                                Card(
-                                  margin: EdgeInsets.symmetric(horizontal: 10,vertical: 10),
-                                  color: Colors.white70,
-                                    child: Column(
-                                      mainAxisSize: MainAxisSize.min,
-                                      children: [
-                                        Image.asset("./images/${txt[index]}.png",height: 150,width: 150,),
-                                        SizedBox(height: 10,),
-                                        Text("${txt[index]}"),
-                                      ],
+              GestureDetector(
+                onTap: (){
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => LoginApp(),));
+                },
+                child: SizedBox(
+                  height: 200,
+                  child: ListView.builder(scrollDirection: Axis.horizontal,itemCount: txt.length,itemBuilder: (context,int index){
+                        return SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Column(
+                                children: [
+                                  Card(
+                                    margin: EdgeInsets.symmetric(horizontal: 10,vertical: 10),
+                                    color: Colors.white70,
+                                      clipBehavior: Clip.hardEdge,
+                                      child: Column(
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: [
+                                          Image.asset("./images/${txt[index]}.png",height: 150,width: 150,),
+                                          SizedBox(height: 10,),
+                                          Text("${txt[index]}"),
+                                        ],
+                                      ),
                                     ),
-                                  ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      );
-                  }),
+                                ],
+                              ),
+                            ],
+                          ),
+                        );
+                    }),
+                ),
               ),
 
               Container(
@@ -212,6 +148,7 @@ class HomePage extends StatelessWidget {
                       return SingleChildScrollView(
                         scrollDirection: Axis.vertical,
                         child: Card(
+                          clipBehavior: Clip.hardEdge,
                           color: Colors.white70,
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.start,
@@ -282,6 +219,7 @@ class HomePage extends StatelessWidget {
                     return SingleChildScrollView(
                       scrollDirection: Axis.vertical,
                       child: Card(
+                        clipBehavior: Clip.hardEdge,
                         color: Colors.white70,
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.start,
@@ -327,3 +265,4 @@ class HomePage extends StatelessWidget {
     );
   }
 }
+
