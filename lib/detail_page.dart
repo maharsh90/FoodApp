@@ -13,7 +13,7 @@ class _DetailPageAppState extends State<DetailPageApp> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text('Detail page'),
+        title: const Text('Detail page'),
       ),
       body: SafeArea(
           child: Center(

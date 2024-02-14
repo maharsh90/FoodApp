@@ -1,15 +1,44 @@
 import 'package:flutter/material.dart';
+import 'package:food_express_app/cart_page.dart';
+import 'package:food_express_app/categories_page.dart';
+import 'package:food_express_app/popular_pizza_page.dart';
 import 'package:food_express_app/slider_app_page.dart';
 import 'package:food_express_app/splash_screen.dart';
 
 import 'detail_page.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
+  HomePage({super.key});
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
   int selectedIdx = 0;
+
   List<Color> clr = [Colors.red, Colors.green, Colors.blue];
+
   List<String> txt = ["coffee", "pizza", "burger", "tea"];
 
-  HomePage({super.key});
+  List<String> pizzaName = [
+    "Mexican",
+    "Farmhouse",
+    "Margherita",
+    "cheesy7",
+    "Paneer"
+  ];
+
+  List<String> BurgerName = [
+    "AlooTikki",
+    "Paneer",
+    "Italian",
+    "CornCheesy",
+    "McCheese"
+  ];
+
+  List<String> TeaName = ["Green", "Black", "Orange", "Blue", "Masala"];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,7 +63,13 @@ class HomePage extends StatelessWidget {
                   color: Colors.white,
                 ),
               ),
-              onTap: () {},
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => HomePage(),
+                    ));
+              },
             ),
             ListTile(
               title: const Text(
@@ -53,6 +88,21 @@ class HomePage extends StatelessWidget {
                 ),
               ),
               onTap: () {},
+            ),
+            ListTile(
+              title: const Text(
+                "Contact",
+                style: TextStyle(
+                  color: Colors.white,
+                ),
+              ),
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => CartPage(),
+                    ));
+              },
             ),
             ListTile(
               title: Text(
@@ -155,7 +205,14 @@ class HomePage extends StatelessWidget {
                     ),
                   ),
                   TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  CategoryPageApp(dataList: txt),
+                            ));
+                      },
                       child: const Text(
                         'See all',
                         style: TextStyle(
@@ -193,8 +250,8 @@ class HomePage extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
                               Image.asset(
-                                "./images/pizza.png",
-                                width: 300,
+                                "./images/${pizzaName[index]}.png",
+                                width: 200,
                                 height: 200,
                               ),
                               Row(
@@ -242,9 +299,20 @@ class HomePage extends StatelessWidget {
                                   const SizedBox(
                                     width: 200,
                                   ),
-                                  ElevatedButton(
-                                      onPressed: () {},
-                                      child: const Text("\$121")),
+                                  IconButton(
+                                      onPressed: () {
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (context) => CartPage(),
+                                            ));
+                                      },
+                                      icon: Image.asset(
+                                        "./images/cart.png",
+                                        height: 20,
+                                        width: 20,
+                                        color: Colors.red,
+                                      )),
                                 ],
                               )
                             ],
@@ -270,7 +338,14 @@ class HomePage extends StatelessWidget {
                     ),
                   ),
                   TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  PopularPizzaPage(pizzaList: pizzaName),
+                            ));
+                      },
                       child: const Text(
                         'See all',
                         style: TextStyle(
@@ -301,7 +376,7 @@ class HomePage extends StatelessWidget {
                           children: [
                             Image.asset(
                               "./images/pizza.png",
-                              width: 300,
+                              width: 200,
                               height: 200,
                             ),
                             Row(

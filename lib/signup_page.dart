@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import 'home_page.dart';
+import 'package:food_express_app/login_page.dart';
 
 class SignupPageApp extends StatefulWidget {
   const SignupPageApp({super.key});
@@ -9,6 +8,9 @@ class SignupPageApp extends StatefulWidget {
 }
 
 class _SignupPageAppState extends State<SignupPageApp> {
+  TextEditingController uname = TextEditingController();
+  TextEditingController passwd = TextEditingController();
+  TextEditingController email = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,7 +49,13 @@ class _SignupPageAppState extends State<SignupPageApp> {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          TextField(
+                          TextFormField(
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                print('please Enter some text');
+                              }
+                            },
+                            controller: uname,
                             textAlign: TextAlign.center,
                             decoration: InputDecoration(
                               border: UnderlineInputBorder(
@@ -55,7 +63,8 @@ class _SignupPageAppState extends State<SignupPageApp> {
                               hintText: 'Enter username',
                             ),
                           ),
-                          TextField(
+                          TextFormField(
+                            controller: email,
                             textAlign: TextAlign.center,
                             decoration: InputDecoration(
                               border: UnderlineInputBorder(
@@ -63,7 +72,8 @@ class _SignupPageAppState extends State<SignupPageApp> {
                               hintText: 'Enter email',
                             ),
                           ),
-                          TextField(
+                          TextFormField(
+                            controller: passwd,
                             textAlign: TextAlign.center,
                             decoration: InputDecoration(
                               border: UnderlineInputBorder(
@@ -79,7 +89,7 @@ class _SignupPageAppState extends State<SignupPageApp> {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) => HomePage(),
+                                    builder: (context) => LoginPageApp(),
                                   ));
                             },
                             child: Text(

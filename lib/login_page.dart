@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:food_express_app/home_page.dart';
 import 'package:food_express_app/signup_page.dart';
 
 class LoginPageApp extends StatefulWidget {
@@ -60,7 +61,7 @@ class _LoginPageAppState extends State<LoginPageApp> {
                                   child: Column(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
-                                      TextField(
+                                      TextFormField(
                                         textAlign: TextAlign.center,
                                         decoration: InputDecoration(
                                           border: UnderlineInputBorder(
@@ -69,7 +70,7 @@ class _LoginPageAppState extends State<LoginPageApp> {
                                           hintText: 'Enter Username',
                                         ),
                                       ),
-                                      TextField(
+                                      TextFormField(
                                         textAlign: TextAlign.center,
                                         decoration: InputDecoration(
                                           border: UnderlineInputBorder(
@@ -82,7 +83,14 @@ class _LoginPageAppState extends State<LoginPageApp> {
                                         height: 10,
                                       ),
                                       ElevatedButton(
-                                        onPressed: () {},
+                                        onPressed: () {
+                                          Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                builder: (context) =>
+                                                    HomePage(),
+                                              ));
+                                        },
                                         style: const ButtonStyle(
                                           backgroundColor:
                                               MaterialStatePropertyAll<Color>(
