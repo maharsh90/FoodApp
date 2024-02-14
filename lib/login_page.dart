@@ -9,6 +9,9 @@ class LoginPageApp extends StatefulWidget {
 }
 
 class _LoginPageAppState extends State<LoginPageApp> {
+  final _UnameFormKey = GlobalKey<FormState>();
+  final _PasswordFormKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -61,22 +64,42 @@ class _LoginPageAppState extends State<LoginPageApp> {
                                   child: Column(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
-                                      TextFormField(
-                                        textAlign: TextAlign.center,
-                                        decoration: InputDecoration(
-                                          border: UnderlineInputBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(0.5)),
-                                          hintText: 'Enter Username',
+                                      Form(
+                                        key: _UnameFormKey,
+                                        child: TextFormField(
+                                          textAlign: TextAlign.center,
+                                          decoration: InputDecoration(
+                                            border: UnderlineInputBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(0.5)),
+                                            hintText: 'Enter Username',
+                                          ),
+                                          validator: (value) {
+                                            if (value == null ||
+                                                value.isEmpty) {
+                                              return 'please enter username';
+                                            }
+                                            return null;
+                                          },
                                         ),
                                       ),
-                                      TextFormField(
-                                        textAlign: TextAlign.center,
-                                        decoration: InputDecoration(
-                                          border: UnderlineInputBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(0.5)),
-                                          hintText: 'Enter password',
+                                      Form(
+                                        key: _PasswordFormKey,
+                                        child: TextFormField(
+                                          textAlign: TextAlign.center,
+                                          decoration: InputDecoration(
+                                            border: UnderlineInputBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(0.5)),
+                                            hintText: 'Enter password',
+                                          ),
+                                          validator: (value) {
+                                            if (value == null ||
+                                                value.isEmpty) {
+                                              return 'please enter password';
+                                            }
+                                            return null;
+                                          },
                                         ),
                                       ),
                                       const SizedBox(
@@ -84,12 +107,17 @@ class _LoginPageAppState extends State<LoginPageApp> {
                                       ),
                                       ElevatedButton(
                                         onPressed: () {
-                                          Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                builder: (context) =>
-                                                    HomePage(),
-                                              ));
+                                          if (_UnameFormKey.currentState!
+                                                  .validate() &&
+                                              _PasswordFormKey.currentState!
+                                                  .validate()) {
+                                            Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      HomePage(),
+                                                ));
+                                          }
                                         },
                                         style: const ButtonStyle(
                                           backgroundColor:
