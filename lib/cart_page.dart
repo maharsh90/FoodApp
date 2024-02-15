@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 
 class CartPage extends StatefulWidget {
-  const CartPage({super.key});
+  List<int> idx;
+  List<String> name;
+
+  CartPage({super.key, required this.idx, required this.name});
 
   @override
   State<CartPage> createState() => _CartPageState();
@@ -19,13 +22,13 @@ class _CartPageState extends State<CartPage> {
           SizedBox(
             height: 600,
             child: ListView.builder(
-              itemCount: 5,
+              itemCount: widget.name.length,
               itemBuilder: (context, index) {
                 return Card(
                   clipBehavior: Clip.hardEdge,
                   child: ListTile(
-                    leading: Image.asset("./images/pizza.png"),
-                    title: const Text('margerita'),
+                    leading: Image.asset("./images/${widget.name[index]}.png"),
+                    title: Text('${widget.name[index]}'),
                     subtitle: const Text('\$121'),
                     trailing: IconButton(
                         onPressed: () {},

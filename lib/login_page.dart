@@ -26,10 +26,7 @@ class _LoginPageAppState extends State<LoginPageApp> {
             gradient: const LinearGradient(
                 begin: Alignment.topLeft,
                 end: Alignment.topRight,
-                colors: <Color>[
-                  Colors.lightBlue,
-                  Colors.blue,
-                ]),
+                colors: <Color>[Colors.teal, Colors.lightBlue]),
           ),
           child: Center(
             child: Column(
@@ -67,6 +64,8 @@ class _LoginPageAppState extends State<LoginPageApp> {
                                       Form(
                                         key: _UnameFormKey,
                                         child: TextFormField(
+                                          autovalidateMode: AutovalidateMode
+                                              .onUserInteraction,
                                           textAlign: TextAlign.center,
                                           decoration: InputDecoration(
                                             border: UnderlineInputBorder(
@@ -86,6 +85,8 @@ class _LoginPageAppState extends State<LoginPageApp> {
                                       Form(
                                         key: _PasswordFormKey,
                                         child: TextFormField(
+                                          autovalidateMode: AutovalidateMode
+                                              .onUserInteraction,
                                           textAlign: TextAlign.center,
                                           decoration: InputDecoration(
                                             border: UnderlineInputBorder(

@@ -39,6 +39,9 @@ class _HomePageState extends State<HomePage> {
 
   List<String> TeaName = ["Green", "Black", "Orange", "Blue", "Masala"];
 
+  List<int> listIndex = [];
+  List<String> listNames = [];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -91,7 +94,7 @@ class _HomePageState extends State<HomePage> {
             ),
             ListTile(
               title: const Text(
-                "Contact",
+                "Cart",
                 style: TextStyle(
                   color: Colors.white,
                 ),
@@ -100,7 +103,10 @@ class _HomePageState extends State<HomePage> {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => CartPage(),
+                      builder: (context) => CartPage(
+                        idx: listIndex,
+                        name: listNames,
+                      ),
                     ));
               },
             ),
@@ -301,11 +307,10 @@ class _HomePageState extends State<HomePage> {
                                   ),
                                   IconButton(
                                       onPressed: () {
-                                        Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                              builder: (context) => CartPage(),
-                                            ));
+                                        listIndex.add(index);
+                                        listNames.add(pizzaName[index]);
+                                        print(index);
+                                        print(pizzaName[index]);
                                       },
                                       icon: Image.asset(
                                         "./images/cart.png",
