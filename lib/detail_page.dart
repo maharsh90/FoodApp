@@ -38,7 +38,7 @@ class _DetailPageAppState extends State<DetailPageApp> {
             ),
             Text(
               widget.pizzaList[widget.indx].name.toString(),
-              style: TextStyle(fontFamily: 'serif', fontSize: 15),
+              style: const TextStyle(fontFamily: 'serif', fontSize: 15),
             ),
             const Text(
               'Price',

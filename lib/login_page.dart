@@ -17,7 +17,7 @@ class _LoginPageAppState extends State<LoginPageApp> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text('Login'),
+        title: const Text('Login'),
       ),
       body: SafeArea(
         child: Container(
@@ -117,7 +117,7 @@ class _LoginPageAppState extends State<LoginPageApp> {
                                                 context,
                                                 MaterialPageRoute(
                                                   builder: (context) =>
-                                                      HomePage(),
+                                                      const HomePage(),
                                                 ));
                                           }
                                         },
@@ -142,12 +142,12 @@ class _LoginPageAppState extends State<LoginPageApp> {
                                                 context,
                                                 MaterialPageRoute(
                                                   builder: (context) =>
-                                                      SignupPageApp(),
+                                                      const SignupPageApp(),
                                                 ));
                                           },
                                           child:
                                               const Text('Create new account')),
-                                      SizedBox(
+                                      const SizedBox(
                                         height: 10,
                                       ),
                                     ],

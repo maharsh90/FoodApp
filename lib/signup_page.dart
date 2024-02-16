@@ -51,7 +51,7 @@ class _SignupPageAppState extends State<SignupPageApp> {
                 ),
                 Container(
                   margin: const EdgeInsets.all(5),
-                  height: 250,
+                  height: 310,
                   width: 300,
                   child: Stack(
                     children: [

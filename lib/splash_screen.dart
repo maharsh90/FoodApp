@@ -21,20 +21,20 @@ class SplashScreen extends StatelessWidget {
                   height: 500,
                   width: double.infinity,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 50,
                 ),
                 ElevatedButton(
                     clipBehavior: Clip.hardEdge,
                     style: ElevatedButton.styleFrom(
-                      shadowColor: Color.fromARGB(200, 30, 100, 200),
-                      minimumSize: Size(double.infinity, 50),
+                      shadowColor: const Color.fromARGB(200, 30, 100, 200),
+                      minimumSize: const Size(double.infinity, 50),
                     ),
                     onPressed: () {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => LoginPageApp(),
+                            builder: (context) => const LoginPageApp(),
                           ));
                     },
                     child: const Text('Get Started')),

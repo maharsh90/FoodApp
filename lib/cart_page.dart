@@ -11,6 +11,7 @@ class CartPage extends StatefulWidget {
 }
 
 class _CartPageState extends State<CartPage> {
+  int total = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,6 +36,7 @@ class _CartPageState extends State<CartPage> {
                         onPressed: () {
                           setState(() {
                             widget.pizzaList.removeAt(index);
+                            total = 0;
                           });
                         },
                         icon: const Icon(
@@ -50,13 +52,20 @@ class _CartPageState extends State<CartPage> {
               style: const ButtonStyle(
                   backgroundColor:
                       MaterialStatePropertyAll<Color>(Colors.blueAccent)),
-              onPressed: () {},
+              onPressed: () {
+                for (int i = 0; i < widget.pizzaList.length; i++) {
+                  setState(() {
+                    total += widget.pizzaList[i].price;
+                  });
+                }
+              },
               child: const Text(
                 'Checkout',
                 style: TextStyle(
                   color: Colors.white,
                 ),
               )),
+          Text("Total: $total"),
         ],
       ),
     );

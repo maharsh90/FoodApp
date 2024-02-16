@@ -9,7 +9,7 @@ import 'package:food_express_app/splash_screen.dart';
 import 'detail_page.dart';
 
 class HomePage extends StatefulWidget {
-  HomePage({super.key});
+  const HomePage({super.key});
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -117,7 +117,7 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
               onTap: () {
-                Navigator.pushReplacement(
+                Navigator.push(
                     context,
                     MaterialPageRoute(
                       builder: (context) => CartPage(
@@ -127,7 +127,7 @@ class _HomePageState extends State<HomePage> {
               },
             ),
             ListTile(
-              title: Text(
+              title: const Text(
                 "LogOut",
                 style: TextStyle(
                   color: Colors.white,
@@ -137,7 +137,7 @@ class _HomePageState extends State<HomePage> {
                 Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => SplashScreen(),
+                      builder: (context) => const SplashScreen(),
                     ));
               },
             ),
@@ -172,8 +172,11 @@ class _HomePageState extends State<HomePage> {
                     ));
               },
               child: SizedBox(
-                height: 220,
+                height: 240,
                 child: ListView.builder(
+                    // shrinkWrap: true,
+                    // physics: BouncingScrollPhysics(
+                    //     decelerationRate: ScrollDecelerationRate.fast),
                     scrollDirection: Axis.horizontal,
                     itemCount: txt.length,
                     itemBuilder: (context, int index) {
@@ -252,6 +255,7 @@ class _HomePageState extends State<HomePage> {
               child: Container(
                 margin: const EdgeInsets.only(left: 10),
                 child: ListView.builder(
+                  shrinkWrap: true,
                   scrollDirection: Axis.horizontal,
                   itemCount: list.length,
                   itemBuilder: (context, index) {
@@ -282,7 +286,7 @@ class _HomePageState extends State<HomePage> {
                                     MainAxisAlignment.spaceBetween,
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
-                                  Icon(
+                                  const Icon(
                                     Icons.star,
                                     color: Colors.red,
                                   ),
@@ -312,7 +316,7 @@ class _HomePageState extends State<HomePage> {
                                 children: [
                                   Text(
                                     "\$${list[index].price}",
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                       fontSize: 15,
                                       fontFamily: 'vernada',
                                     ),
@@ -360,7 +364,7 @@ class _HomePageState extends State<HomePage> {
                   ),
                   TextButton(
                       onPressed: () {
-                        Navigator.pushReplacement(
+                        Navigator.push(
                             context,
                             MaterialPageRoute(
                               builder: (context) =>
@@ -380,76 +384,81 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             SizedBox(
+              width: double.infinity,
               height: 300,
               child: Container(
-                margin: const EdgeInsets.only(left: 10),
+                margin: const EdgeInsets.only(left: 5),
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
                   itemCount: 5,
                   itemBuilder: (context, index) {
                     return SingleChildScrollView(
                       scrollDirection: Axis.vertical,
-                      child: Card(
-                        clipBehavior: Clip.hardEdge,
-                        color: Colors.white70,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Image.asset(
-                              "./images/pizza.png",
-                              width: 200,
-                              height: 200,
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                const Text(
-                                  'Pizza',
-                                  style: TextStyle(
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.bold,
-                                    fontFamily: 'Helvetica',
-                                  ),
-                                ),
-                                const SizedBox(
-                                  width: 300,
-                                ),
-                                Image.asset(
-                                  "./images/location.png",
-                                  height: 20,
-                                  width: 20,
-                                ),
-                                // Icon(Icons.maps_home_work_rounded,color: Colors.red,),
-                                Text('3.0 KM'),
-                              ],
-                            ),
-                            const Text(
-                              "Fast Food",
-                              textAlign: TextAlign.start,
-                              style: TextStyle(
-                                fontSize: 15,
-                                fontFamily: 'serif',
+                      child: Container(
+                        width: 290,
+                        child: Card(
+                          clipBehavior: Clip.hardEdge,
+                          color: Colors.white70,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Image.asset(
+                                "./images/pizza.png",
+                                width: 200,
+                                height: 200,
                               ),
-                            ),
-                            Row(
-                              children: [
-                                IconButton(
-                                    onPressed: () {},
-                                    icon: const Icon(
-                                      Icons.star,
-                                      color: Colors.red,
-                                    )),
-                                const Text('4.7(143 Ratings)'),
-                                const SizedBox(
-                                  width: 200,
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  const Text(
+                                    'Pizza',
+                                    style: TextStyle(
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.bold,
+                                      fontFamily: 'Helvetica',
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    width: 150,
+                                  ),
+                                  Image.asset(
+                                    "./images/location.png",
+                                    height: 20,
+                                    width: 20,
+                                  ),
+                                  // Icon(Icons.maps_home_work_rounded,color: Colors.red,),
+                                  const Text('3.0 KM'),
+                                ],
+                              ),
+                              const Text(
+                                "Fast Food",
+                                textAlign: TextAlign.start,
+                                style: TextStyle(
+                                  fontSize: 15,
+                                  fontFamily: 'serif',
                                 ),
-                                ElevatedButton(
-                                    onPressed: () {},
-                                    child: const Text("\$121")),
-                              ],
-                            )
-                          ],
+                              ),
+                              Row(
+                                children: [
+                                  IconButton(
+                                      onPressed: () {},
+                                      icon: const Icon(
+                                        Icons.star,
+                                        color: Colors.red,
+                                      )),
+                                  const Text('4.7(143 Ratings)'),
+                                  SizedBox(
+                                    width: 20,
+                                  ),
+                                  ElevatedButton(
+                                      onPressed: () {},
+                                      child: const Text("\$121")),
+                                ],
+                              )
+                            ],
+                          ),
                         ),
                       ),
                     );
