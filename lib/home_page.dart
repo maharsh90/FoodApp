@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:food_express_app/cart_page.dart';
 import 'package:food_express_app/categories_page.dart';
+import 'package:food_express_app/pizza_class.dart';
 import 'package:food_express_app/popular_pizza_page.dart';
 import 'package:food_express_app/slider_app_page.dart';
 import 'package:food_express_app/splash_screen.dart';
@@ -13,6 +14,15 @@ class HomePage extends StatefulWidget {
   @override
   State<HomePage> createState() => _HomePageState();
 }
+
+List<Pizza> list = [];
+Pizza obj = Pizza("Mexican", 12, 4.1, "./images/Mexican.png");
+Pizza obj1 = Pizza("Farmhouse", 16, 4.2, "./images/Farmhouse.png");
+Pizza obj2 = Pizza("Margherita", 19, 4.3, "./images/Margherita.png");
+Pizza obj3 = Pizza("cheesy7", 10, 4.4, "./images/cheesy7.png");
+Pizza obj4 = Pizza("Paneer", 67, 4.5, "./images/Paneer.png");
+
+List<Pizza> cartls = [];
 
 class _HomePageState extends State<HomePage> {
   int selectedIdx = 0;
@@ -44,6 +54,13 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    list = [];
+    list.add(obj);
+    list.add(obj1);
+    list.add(obj2);
+    list.add(obj3);
+    list.add(obj4);
+    print(list);
     return Scaffold(
       drawer: Drawer(
         backgroundColor: Colors.teal,
@@ -67,7 +84,7 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
               onTap: () {
-                Navigator.push(
+                Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
                       builder: (context) => HomePage(),
@@ -100,12 +117,11 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
               onTap: () {
-                Navigator.push(
+                Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
                       builder: (context) => CartPage(
-                        idx: listIndex,
-                        name: listNames,
+                        pizzaList: cartls,
                       ),
                     ));
               },
@@ -118,7 +134,7 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
               onTap: () {
-                Navigator.push(
+                Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
                       builder: (context) => SplashScreen(),
@@ -156,7 +172,7 @@ class _HomePageState extends State<HomePage> {
                     ));
               },
               child: SizedBox(
-                height: 200,
+                height: 220,
                 child: ListView.builder(
                     scrollDirection: Axis.horizontal,
                     itemCount: txt.length,
@@ -231,23 +247,24 @@ class _HomePageState extends State<HomePage> {
                 ],
               ),
             ),
-            GestureDetector(
-              onTap: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const DetailPageApp(),
-                    ));
-              },
-              child: SizedBox(
-                height: 300,
-                child: Container(
-                  margin: const EdgeInsets.only(left: 10),
-                  child: ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    itemCount: 5,
-                    itemBuilder: (context, index) {
-                      return SingleChildScrollView(
+            SizedBox(
+              height: 300,
+              child: Container(
+                margin: const EdgeInsets.only(left: 10),
+                child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: list.length,
+                  itemBuilder: (context, index) {
+                    return GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  DetailPageApp(indx: index, pizzaList: list),
+                            ));
+                      },
+                      child: SingleChildScrollView(
                         scrollDirection: Axis.vertical,
                         child: Card(
                           clipBehavior: Clip.hardEdge,
@@ -256,7 +273,7 @@ class _HomePageState extends State<HomePage> {
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
                               Image.asset(
-                                "./images/${pizzaName[index]}.png",
+                                "${list[index].image}",
                                 width: 200,
                                 height: 200,
                               ),
@@ -265,16 +282,13 @@ class _HomePageState extends State<HomePage> {
                                     MainAxisAlignment.spaceBetween,
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
-                                  const Text(
-                                    'Pizza',
-                                    style: TextStyle(
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.bold,
-                                      fontFamily: 'Helvetica',
-                                    ),
+                                  Icon(
+                                    Icons.star,
+                                    color: Colors.red,
                                   ),
+                                  Text(list[index].rating.toString()),
                                   const SizedBox(
-                                    width: 300,
+                                    width: 150,
                                   ),
                                   Image.asset(
                                     "./images/location.png",
@@ -285,32 +299,34 @@ class _HomePageState extends State<HomePage> {
                                   const Text('3.0 KM'),
                                 ],
                               ),
-                              const Text(
-                                "Fast Food",
+                              Text(
+                                list[index].name.toString(),
                                 textAlign: TextAlign.start,
-                                style: TextStyle(
+                                style: const TextStyle(
                                   fontSize: 15,
+                                  fontWeight: FontWeight.bold,
                                   fontFamily: 'serif',
                                 ),
                               ),
                               Row(
                                 children: [
-                                  IconButton(
-                                      onPressed: () {},
-                                      icon: const Icon(
-                                        Icons.star,
-                                        color: Colors.red,
-                                      )),
-                                  const Text('4.7(143 Ratings)'),
+                                  Text(
+                                    "\$${list[index].price}",
+                                    style: TextStyle(
+                                      fontSize: 15,
+                                      fontFamily: 'vernada',
+                                    ),
+                                  ),
                                   const SizedBox(
                                     width: 200,
                                   ),
                                   IconButton(
                                       onPressed: () {
-                                        listIndex.add(index);
-                                        listNames.add(pizzaName[index]);
-                                        print(index);
-                                        print(pizzaName[index]);
+                                        // listIndex.add(index);
+                                        // listNames.add(pizzaName[index]);
+                                        // print(index);
+                                        // print(pizzaName[index]);
+                                        cartls.add(list[index]);
                                       },
                                       icon: Image.asset(
                                         "./images/cart.png",
@@ -323,9 +339,9 @@ class _HomePageState extends State<HomePage> {
                             ],
                           ),
                         ),
-                      );
-                    },
-                  ),
+                      ),
+                    );
+                  },
                 ),
               ),
             ),
@@ -344,7 +360,7 @@ class _HomePageState extends State<HomePage> {
                   ),
                   TextButton(
                       onPressed: () {
-                        Navigator.push(
+                        Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
                               builder: (context) =>

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:food_express_app/detail_page.dart';
 import 'package:food_express_app/login_page.dart';
 import 'package:food_express_app/signup_page.dart';
 import 'package:food_express_app/splash_screen.dart';
@@ -13,7 +12,7 @@ void main() {
       'splashScreen': (context) => SplashScreen(),
       'login': (context) => LoginPageApp(),
       'register': (context) => SignupPageApp(),
-      'DetailPage': (context) => DetailPageApp(),
+      // 'DetailPage': (context) => DetailPageApp(),
     },
   ));
 }

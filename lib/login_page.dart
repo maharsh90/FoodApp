@@ -33,7 +33,8 @@ class _LoginPageAppState extends State<LoginPageApp> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 SizedBox(
-                  height: MediaQuery.of(context).size.height / 2,
+                  // height: MediaQuery.of(context).size.height / 2,
+                  height: 400,
                   width: 400,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -112,7 +113,7 @@ class _LoginPageAppState extends State<LoginPageApp> {
                                                   .validate() &&
                                               _PasswordFormKey.currentState!
                                                   .validate()) {
-                                            Navigator.push(
+                                            Navigator.pushReplacement(
                                                 context,
                                                 MaterialPageRoute(
                                                   builder: (context) =>
@@ -137,7 +138,7 @@ class _LoginPageAppState extends State<LoginPageApp> {
                                       ),
                                       TextButton(
                                           onPressed: () {
-                                            Navigator.push(
+                                            Navigator.pushReplacement(
                                                 context,
                                                 MaterialPageRoute(
                                                   builder: (context) =>

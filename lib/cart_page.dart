@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:food_express_app/pizza_class.dart';
 
 class CartPage extends StatefulWidget {
-  List<int> idx;
-  List<String> name;
+  List<Pizza> pizzaList;
 
-  CartPage({super.key, required this.idx, required this.name});
+  CartPage({super.key, required this.pizzaList});
 
   @override
   State<CartPage> createState() => _CartPageState();
@@ -22,16 +22,21 @@ class _CartPageState extends State<CartPage> {
           SizedBox(
             height: 600,
             child: ListView.builder(
-              itemCount: widget.name.length,
+              itemCount: widget.pizzaList.length,
               itemBuilder: (context, index) {
                 return Card(
                   clipBehavior: Clip.hardEdge,
                   child: ListTile(
-                    leading: Image.asset("./images/${widget.name[index]}.png"),
-                    title: Text('${widget.name[index]}'),
-                    subtitle: const Text('\$121'),
+                    leading: Image.asset(
+                        "./images/${widget.pizzaList[index].name}.png"),
+                    title: Text('${widget.pizzaList[index].name}'),
+                    subtitle: Text('\$${widget.pizzaList[index].price}'),
                     trailing: IconButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          setState(() {
+                            widget.pizzaList.removeAt(index);
+                          });
+                        },
                         icon: const Icon(
                           Icons.delete,
                           color: Colors.red,

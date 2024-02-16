@@ -50,8 +50,8 @@ class _SignupPageAppState extends State<SignupPageApp> {
                   height: 10,
                 ),
                 Container(
-                  margin: const EdgeInsets.all(10),
-                  height: 300,
+                  margin: const EdgeInsets.all(5),
+                  height: 250,
                   width: 300,
                   child: Stack(
                     children: [
@@ -132,7 +132,7 @@ class _SignupPageAppState extends State<SignupPageApp> {
                                 if (_unameKey.currentState!.validate() &&
                                     _emailKey.currentState!.validate() &&
                                     _passKey.currentState!.validate()) {
-                                  Navigator.push(
+                                  Navigator.pushReplacement(
                                       context,
                                       MaterialPageRoute(
                                         builder: (context) => LoginPageApp(),
